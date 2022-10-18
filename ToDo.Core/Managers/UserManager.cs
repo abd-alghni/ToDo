@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -11,6 +11,7 @@ using ToDo.Common.Helper;
 using ToDo.Core.Managers.Interfaces;
 using ToDo.DbModel;
 using ToDo.DbModel.Models;
+using ToDo.ModelView;
 using ToDo.ModelView.ModelView;
 
 namespace ToDo.Core.Managers
@@ -174,7 +175,7 @@ namespace ToDo.Core.Managers
 
         private string GenerateJWTToken(User user)
         {
-            var jwtKey = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
+            var jwtKey = "qwertyuiopasdfghjkl";
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -188,7 +189,7 @@ namespace ToDo.Core.Managers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var issuer = "test.com";
+            var issuer = "https://localhost:7234/";
 
             var token = new JwtSecurityToken(
                 issuer,
@@ -201,4 +202,3 @@ namespace ToDo.Core.Managers
         }
     }
 }
-*/
